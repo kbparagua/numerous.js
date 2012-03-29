@@ -11,7 +11,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 2. Move it to your javascript folder or anywhere that can be accessed publicly
 
 
-## Example on Rails 3
+## Example in Rails 3
 
 Assuming that Post has many Tags
 
