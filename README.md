@@ -69,8 +69,6 @@ Add Tag's id must be in this format: `for-<id of div to update>`
 
 ## Credits
 
-Created by:
-
 Karl Bryan P. Paragua
 www.daftcoder.com
 
