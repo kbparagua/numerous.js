@@ -41,6 +41,7 @@ Assuming that Post has many Tags
 ### Add Tag
 
 `<%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>`
+
 - `numerous-add` class is required. 
 - `for-key-list` id is used as a reference on which div does the new fields
 will be appended.
@@ -51,6 +52,7 @@ Add Tag's id must be in this format: `for-<id of div to update>`
 ### Fields For
 
 `<%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>`
+
 - The target fields_for must be inside a div element.
 - The target fields_for must have the string `"replace_this"` as its child_index value
 
