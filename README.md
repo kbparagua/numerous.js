@@ -38,6 +38,13 @@ Assuming that Post has many Tags
         
 ## Usage and Conventions
 
+### Numerous Main Div
+
+`<div class="numerous"></div>`
+
+- Add Tag and `fields_for` must be under a div element with the `numerous` class.
+
+
 ### Add Tag
 
 `<%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>`
