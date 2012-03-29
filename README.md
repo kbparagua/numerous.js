@@ -31,7 +31,7 @@ Assuming that Post has many Tags
           <% end %>
         </div>
         
-        <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>
+        <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-tag-list" %>
       </div>
     <% end %>
     
@@ -47,7 +47,7 @@ Assuming that Post has many Tags
 
 ### Add Tag
 
-`<%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>`
+`<%= link_to "add tag", "#", :class => "numerous-add", :id => "for-tag-list" %>`
 
 - `numerous-add` class is required
 - `for-key-list` id is used as a reference on which div will the new fields
