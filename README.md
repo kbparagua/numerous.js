@@ -34,3 +34,36 @@ Assuming that Post has many Tags
         <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>
       </div>
     <% end %>
+    
+        
+## Usage and Conventions
+
+### Add Tag
+
+`<%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>`
+- `numerous-add` class is required. 
+- `for-key-list` id is used as a reference on which div does the new fields
+will be appended.
+
+Add Tag's id must be in this format: `for-<id of div to update>`
+
+
+### Fields For
+
+`<%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>`
+- The target fields_for must be inside a div element.
+- The target fields_for must have the string `"replace_this"` as its child_index value
+
+
+### Delete Tag
+
+`<%= f.hidden_field :_destroy, :value => 0, :class => "numerous-remove-field" %>`
+`<%= link_to "delete", "#", :class => "numerous-remove" %>`
+
+- `numerous-remove` class is required.
+- a hidden_field `_destroy` is required and `:allow_destroy => true` must be set
+on `accpets_nested_attributes_for`
+
+
+
+
