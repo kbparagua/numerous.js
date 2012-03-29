@@ -16,11 +16,8 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 Assuming that Post has many Tags
 
     <%= form_for @post do |form| %>
-      Title:
-      <%= f.text_field :title %>
-
-      Body:
-      <%= f.text_field :body %>
+      Title: <%= form.text_field :title %>
+      Body: <%= form.text_field :body %>
       
       Tags:
       <div id="tag-list"></div>
