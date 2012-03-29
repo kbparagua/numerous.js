@@ -2,8 +2,8 @@
 Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
 
 
-## Requirements
-- Atleast JQuery 1.7
+## Minimum Requirements
+- JQuery 1.7
 
 
 ## Installment
@@ -15,8 +15,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 Assuming that Post has many Tags
 
-`
-<%= form_for @post do |form| %>
+`<%= form_for @post do |form| %>
   Title:
   <%= f.text_field :title %>
 
@@ -37,5 +36,4 @@ Assuming that Post has many Tags
     
     <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>
   </div>
-<% end %>
-`
+<% end %>`
