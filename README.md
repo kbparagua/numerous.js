@@ -24,7 +24,7 @@ Assuming that Post has many Tags
       <div id="tag-list"></div>
       
       <div class="numerous">
-        <div>
+        <div class="numerous-form">
           <%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>
             <%= f.text_field :name %>
             <%= f.hidden_field :_destroy, :value => 0, :class => "numerous-remove-field" %>
@@ -61,7 +61,7 @@ Add Tag's id must be in this format: `for-<id of div to update>`
 
 `<%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>`
 
-- The target `fields_for` must be inside a div element
+- The target `fields_for` must be inside an element with class `numerous-form`
 - The target `fields_for` must have the string `"replace_this"` as its `child_index` value
 
 

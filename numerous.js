@@ -8,7 +8,10 @@ $(document).ready(function(e)
     var form = numerous.find(".numerous-form");
     var add = numerous.find(".numerous-add");
     
-    forms[add.attr('id')] = form.html();
+    var container = $("<div></div>");
+    container.append(form.removeClass("numerous-form"));
+    
+    forms[add.attr('id')] = container.html();
     form.remove();
   }
   
