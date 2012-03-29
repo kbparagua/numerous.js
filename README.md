@@ -15,25 +15,25 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 Assuming that Post has many Tags
 
-`<%= form_for @post do |form| %>
-  Title:
-  <%= f.text_field :title %>
+    <%= form_for @post do |form| %>
+      Title:
+      <%= f.text_field :title %>
 
-  Body:
-  <%= f.text_field :body %>
-  
-  Tags:
-  <div id="tag-list"></div>
-  
-  <div class="numerous">
-    <div>
-      <%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>
-        <%= f.text_field :name %>
-        <%= f.hidden_field :_destroy, :value => 0, :class => "numerous-remove-field" %>
-        <%= link_to "delete", "#", :class => "numerous-remove" %>
-      <% end %>
-    </div>
-    
-    <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>
-  </div>
-<% end %>`
+      Body:
+      <%= f.text_field :body %>
+      
+      Tags:
+      <div id="tag-list"></div>
+      
+      <div class="numerous">
+        <div>
+          <%= form.fields_for :tag, Tag.new, :child_index => "replace_this" do |f| %>
+            <%= f.text_field :name %>
+            <%= f.hidden_field :_destroy, :value => 0, :class => "numerous-remove-field" %>
+            <%= link_to "delete", "#", :class => "numerous-remove" %>
+          <% end %>
+        </div>
+        
+        <%= link_to "add tag", "#", :class => "numerous-add", :id => "for-key-list" %>
+      </div>
+    <% end %>
