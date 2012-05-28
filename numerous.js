@@ -1,22 +1,24 @@
 $(document).ready(function(e)
 {
-  var numerousList = $(".numerous");
+  window.numerous_init = function(){
+    var numerousList = $(".numerous");
  
-  var forms = {};
-  for (var i = 0, len = numerousList.length; i < len; i++){
-    var numerous = $(numerousList[i]);
-    var form = numerous.find(".numerous-form");
-    var add = numerous.find(".numerous-add");
-    
-    var container = $("<div></div>");
-    container.append(form.removeClass("numerous-form"));
-    
-    forms[add.attr('id')] = container.html();
-    form.remove();
-  }
+    window.forms = {};
+    for (var i = 0, len = numerousList.length; i < len; i++){
+      var numerous = $(numerousList[i]);
+      var form = numerous.find(".numerous-form");
+      var add = numerous.find(".numerous-add");
+      
+      var container = $("<div></div>");
+      container.append(form.removeClass("numerous-form"));
+      
+      forms[add.attr('id')] = container.html();
+      form.remove();
+    }
+  };
   
   
-  $(".numerous-add").on('click', function(e){
+  $("body").on('click', ".numerous-add", function(e){
     e.preventDefault();
     
     // Remove 'for-' on this id
