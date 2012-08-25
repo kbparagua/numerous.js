@@ -5,6 +5,7 @@
 // Author: Karl Bryan Paragua
 // Source: https://github.com/kbparagua/numerous.js 
 
+
 $(document).ready(function(e)
 {
   Numerous = {};
