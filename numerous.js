@@ -1,38 +1,63 @@
+// Numerous.js
+// Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
+// Version 2.0
+//
+// Author: Karl Bryan Paragua
+// Source: https://github.com/kbparagua/numerous.js 
+
 $(document).ready(function(e)
 {
-  var numerousList = $(".numerous");
- 
-  var forms = {};
-  for (var i = 0, len = numerousList.length; i < len; i++){
-    var numerous = $(numerousList[i]);
-    var form = numerous.find(".numerous-form");
-    var add = numerous.find(".numerous-add");
+  Numerous = {};
+  
+  
+  Numerous.init = function(){
+    var forms = $('.numerous');
     
-    var container = $("<div></div>");
-    container.append(form.removeClass("numerous-form"));
+    Numerous.addFormHash = {};
+  
+    for (var i = 0, len = forms.length; i < len; i++){
+      var form = $(forms[i]);
+      var addLinkId = 'add-to-' + form.attr('id').replace(/fields-for-/, '');
+      
+      // Remove Numerous class and id
+      form.removeClass('numerous').attr('id','');
+      
+      // use temp as a container because html() 
+      // function only returns the inner html
+      var temp = $('<div></div>').append(form); 
+      Numerous.addFormHash[addLinkId] = temp.html();
+      form.remove();
+      
+      Numerous.clickHandlerForAdd(addLinkId);
+    }
     
-    forms[add.attr('id')] = container.html();
-    form.remove();
+    Numerous.createHandlersForRemove();
+  };
+  
+  
+  
+  Numerous.clickHandlerForAdd = function(addLinkId){
+    var addLink = '#' + addLinkId;
+    $('body').on('click', addLink, function(e){
+      e.preventDefault();
+      
+      var updateDiv = '#' + this.id.replace(/add-to-/, ''),
+        childIndex = new Date().getTime(),
+        form = Numerous.addFormHash[this.id].replace(/replace_this/g, childIndex);
+
+      $(updateDiv).append( $(form) );
+    });
+  };
+  
+  
+  Numerous.createHandlersForRemove = function(){
+    $('body').on('click', '.numerous-remove a', function(e){
+      e.preventDefault();
+      
+      var _this = $(this);
+      _this.siblings('input').attr('value', '1');
+      _this.parent().parent().hide();
+    });
   }
-  
-  
-  $(".numerous-add").on('click', function(e){
-    e.preventDefault();
-    
-    // Remove 'for-' on this id
-    var update = "#" + this.id.split("for-")[1];
-    var form = forms[this.id].replace(/replace_this/g, new Date().getTime());
-    
-    $(update).append($(form));
-  });
-  
-  
-  $("div").on('click', '.numerous-remove', function(e){
-    e.preventDefault();
-    
-    var that = $(this);
-    that.siblings().filter(".numerous-remove-field").attr('value', '1');
-    that.parent().hide();
-  });
   
 });
