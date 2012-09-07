@@ -39,7 +39,8 @@ $(document).ready(function(e)
   
   Numerous.clickHandlerForAdd = function(addLinkId){
     var addLink = '#' + addLinkId;
-    $('body').on('click', addLink, function(e){
+    
+    $(addLink).click(function(e){
       e.preventDefault();
       
       var updateDiv = '#' + this.id.replace(/add-to-/, ''),
@@ -52,6 +53,7 @@ $(document).ready(function(e)
   
   
   Numerous.createHandlersForRemove = function(){
+    $('body').off('click', '.numerous-remove a');
     $('body').on('click', '.numerous-remove a', function(e){
       e.preventDefault();
       
