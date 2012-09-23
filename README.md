@@ -81,6 +81,25 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
         <%= link_to 'Add Object', '#', :id => 'add-to-[element's id where to append new forms]' %>
 
 
+## Callbacks
+You can add callbacks which will be called after adding or removing a `fields_for` instance.
+
+        Numerous.init({
+          'fields-for-object' : {
+            'add' : function(form){
+              alert("I'm adding another fields_for instance!");
+              // do something here
+            },
+            
+            'remove' : function(form){
+              alert("I'm removing a fields_for instance!");
+              // do something here
+            }
+          }
+        });
+
+The `add` and `remove` callbacks take 1 parameter which is the `fields_for` element that is added or removed. 
+
 ## Credits
 
 Karl Bryan P. Paragua
