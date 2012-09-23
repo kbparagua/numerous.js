@@ -7,7 +7,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 - Rails 2.3.2 to 3.*
 
 
-## Installment
+## Installation
 1. Download numerous.js file
 2. Move it to your javascript folder or anywhere that can be accessed by your app
 3. Include it in your html file
