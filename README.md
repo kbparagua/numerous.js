@@ -85,7 +85,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 You can add callbacks which will be called after adding or removing a `fields_for` instance.
 
         Numerous.init({
-          'fields-for-object' : {
+          'list-name' : {
             'add' : function(form){
               alert("I'm adding another fields_for instance!");
               // do something here
@@ -99,6 +99,16 @@ You can add callbacks which will be called after adding or removing a `fields_fo
         });
 
 The `add` and `remove` callbacks take 1 parameter which is the `fields_for` element that is added or removed. 
+
+## Helper Methods
+
+`Numerous.count(String list)`
+- returns the current count (Number) of the visible objects under the passed list
+
+
+`Numerous.get(String list)`
+- returns all the objects (HTML Elements) under the passed list
+
 
 ## Credits
 
