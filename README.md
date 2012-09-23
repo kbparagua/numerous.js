@@ -4,6 +4,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 ## Minimum Requirements
 - JQuery 1.7 or higher
+- Rails 2.3.2 to 3.*
 
 
 ## Installment
@@ -16,12 +17,12 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 1. Create an element where the new forms will be appended.
 
-        <div id="objects"></div>
+        <div id="list"></div>
 
 
 2. Create a `fields_for` template to be used when adding a new object. 
 
-        <div id="fields-for-objects" class="numerous'>
+        <div id="fields-for-list" class="numerous'>
         
           <%= form.fields_for :objects, Object.new, :child_index => 'replace_this' do |f| %>
             <%= f.text_field :object_field %>
@@ -37,7 +38,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 3. Create a link for adding new objects. 
 
-        <%= link_to 'Add Object', '#', :id => 'add-to-objects' %>
+        <%= link_to 'Add Object', '#', :id => 'add-to-list' %>
 
 
 
@@ -53,7 +54,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 1. The whole `fields_for` section must be under a div like this:
 
-        <div id="fields-for-[element's id where to append new forms]" class="numerous">
+        <div id="fields-for-[list element id]" class="numerous">
 
 2. `fields_for` objects must have 'replace_this' as the `:child_index` value.
         
@@ -71,14 +72,14 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
   Set `:allow_destroy => true` to the parent model if you want this functionality.
 
         class Parent < ActiveRecord::Base
-          has_many :objects
-          accepts_nested_attributes_for :objects, :allow_destroy => true
+          has_many :lists
+          accepts_nested_attributes_for :lists, :allow_destroy => true
         end
 
 
 4. The add link must follow this id template:
         
-        <%= link_to 'Add Object', '#', :id => 'add-to-[element's id where to append new forms]' %>
+        <%= link_to 'Add Object', '#', :id => 'add-to-[list element id]' %>
 
 
 ## Callbacks
