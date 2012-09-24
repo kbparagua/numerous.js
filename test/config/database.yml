@@ -1,0 +1,5 @@
+development:
+  adapter: mysql2
+  database: numerousjs_development
+  username: root
+  password:

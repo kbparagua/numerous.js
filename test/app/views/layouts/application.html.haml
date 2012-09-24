@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Numerous.Js
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    .navbar
+      .navbar-inner
+        %a.brand
+          Numerous.js
+        %ul.nav
+          %li= link_to 'Index', articles_path
+          %li= link_to 'New', new_article_path
+    
+    .container
+      =yield

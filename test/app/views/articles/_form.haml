@@ -1,0 +1,25 @@
+=form_for article do |f|
+  %p
+    %label Title:
+    =f.text_field :title
+    
+  %p
+    %label Body:
+    =f.text_area :body
+    
+  #tags
+  
+  =link_to 'Add Tag', '#', :id => 'add-to-tags', :class => 'btn btn-success'
+  
+  #fields-for-tags.numerous
+    =f.fields_for :tags, Tag.new, :child_index => 'replace_this' do |tag|
+      =tag.text_field :name
+      
+      %span.numerous-remove
+        =tag.hidden_field :_destroy, :value => 0
+        =link_to 'Remove', '#', :class => 'btn btn-danger'
+  
+  %br/
+  %br/
+  
+  =f.submit

@@ -1,0 +1,13 @@
+%h1= @article.title
+
+%p= @article.body
+
+
+%ul
+  -@article.tags.each do |tag|
+    %li= tag.name
+    
+
+=link_to 'Edit', [:edit, @article], :class => 'btn'
+=link_to 'Delete', @article, :method => :delete, 
+  :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-danger'
