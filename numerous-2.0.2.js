@@ -15,7 +15,7 @@ $(document).ready(function(e)
     var forms = $('.numerous');
     
     Numerous.addFormHash = {};
-    Numerous.options = options;
+    Numerous.options = options || {};
   
   
     for (var i = 0, len = forms.length; i < len; i++){
