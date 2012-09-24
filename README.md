@@ -13,6 +13,11 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 3. Include it in your html file
 
 
+## Live Demo
+
+[Try Numerous.js!!](http://numerous-js.herokuapp.com/)
+
+
 ## Quick Start
 
 1. Create an element where the new forms will be appended.
