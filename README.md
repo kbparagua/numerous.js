@@ -33,11 +33,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
             <%= f.text_field :object_field %>
             <%= f.text_field :another_object_field %>
            ...    
-            <div class="numerous-remove">
-              <%= f.hidden_field :_destroy, :value => 0 %>
-              <%= link_to 'Remove', '#' %>
-            </div>
-        
+            <%= link_to 'Remove', '#', :class => 'numerous-remove' %>
         </div>
 
 
@@ -59,19 +55,16 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 1. The whole `fields_for` section must be under a div like this:
 
-        <div id="fields-for-[list element id]" class="numerous">
+        <div id="fields-for-[list id]" class="numerous">
 
 2. `fields_for` objects must have 'replace_this' as the `:child_index` value.
         
         <%= form.fields_for :objects, Object.new, :child_index => 'replace_this' do |f| %>
 
 
-3. Put a `numerous-remove` element if you want the ability to delete objects.
+3. Put a `numerous-remove` link if you want the ability to delete objects.
         
-        <div class="numerous-remove">
-          <%= f.hidden_field :_destroy, :value => 0 %>
-          <%= link_to 'Remove', '#' %>
-        </div>
+        <%= link_to 'Remove', '#', :class => 'numerous-remove' %>
       
 
   Set `:allow_destroy => true` to the parent model if you want this functionality.
@@ -84,7 +77,7 @@ Unobtrusive Javascript helper for dynamically creating fields_for objects for Ra
 
 4. The add link must follow this id template:
         
-        <%= link_to 'Add Object', '#', :id => 'add-to-[list element id]' %>
+        <%= link_to 'Add Object', '#', :id => 'add-to-[list id]' %>
 
 
 ## Callbacks
@@ -106,6 +99,21 @@ You can add callbacks which will be called after adding or removing a `fields_fo
 
 The `add` and `remove` callbacks take 1 parameter which is the `fields_for` element that is added or removed. 
 
+
+## Updating Objects
+By default numerous.js is adding `fields-for-[list id]` class to all `fields_for` instance you've added.
+If you want to be able to remove existing objects, put the `fields_for` under a `fields-for-[list id]` div.
+
+        <% parent.lists.each do |list| %>
+          <div class='fields-for-list'>
+            <%= form.fields_for :list, list do |f| %>
+              <%= f.text_field :object_field %>
+              <%= f.text_field :another_object_field %>
+              ...    
+              <%= link_to 'Remove', '#', :class => 'numerous-remove' %>
+            <% end %>
+          </div>
+        <% end %>
 
 ## Initialization Options
 
