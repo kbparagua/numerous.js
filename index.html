@@ -68,11 +68,7 @@
     &lt;%= f.text_field :object_field %&gt;
     &lt;%= f.text_field :another_object_field %&gt;
    ...    
-    &lt;div class="numerous-remove"&gt;
-      &lt;%= f.hidden_field :_destroy, :value =&gt; 0 %&gt;
-      &lt;%= link_to 'Remove', '#' %&gt;
-    &lt;/div&gt;
-
+    &lt;%= link_to 'Remove', '#', :class =&gt; 'numerous-remove' %&gt;
 &lt;/div&gt;
 </code></pre>
 </li>
@@ -96,7 +92,7 @@
 <li>
 <p>The whole <code>fields_for</code> section must be under a div like this:</p>
 
-<pre><code>&lt;div id="fields-for-[list element id]" class="numerous"&gt;
+<pre><code>&lt;div id="fields-for-[list id]" class="numerous"&gt;
 </code></pre>
 </li>
 <li>
@@ -106,12 +102,9 @@
 </code></pre>
 </li>
 <li>
-<p>Put a <code>numerous-remove</code> element if you want the ability to delete objects.</p>
+<p>Put a <code>numerous-remove</code> link if you want the ability to delete objects.</p>
 
-<pre><code>&lt;div class="numerous-remove"&gt;
-  &lt;%= f.hidden_field :_destroy, :value =&gt; 0 %&gt;
-  &lt;%= link_to 'Remove', '#' %&gt;
-&lt;/div&gt;
+<pre><code>&lt;%= link_to 'Remove', '#', :class =&gt; 'numerous-remove' %&gt;
 </code></pre>
 
 <p>Set <code>:allow_destroy =&gt; true</code> to the parent model if you want this functionality.</p>
@@ -125,7 +118,7 @@
 <li>
 <p>The add link must follow this id template:</p>
 
-<pre><code>&lt;%= link_to 'Add Object', '#', :id =&gt; 'add-to-[list element id]' %&gt;
+<pre><code>&lt;%= link_to 'Add Object', '#', :id =&gt; 'add-to-[list id]' %&gt;
 </code></pre>
 </li>
 </ol><h2>Callbacks</h2>
@@ -148,6 +141,23 @@
 </code></pre>
 
 <p>The <code>add</code> and <code>remove</code> callbacks take 1 parameter which is the <code>fields_for</code> element that is added or removed. </p>
+
+<h2>Updating Objects</h2>
+
+<p>By default numerous.js is adding <code>fields-for-[list id]</code> class to all <code>fields_for</code> instance you've added.
+If you want to be able to remove existing objects, put the <code>fields_for</code> under a <code>fields-for-[list id]</code> div.</p>
+
+<pre><code>    &lt;% parent.lists.each do |list| %&gt;
+      &lt;div class='fields-for-list'&gt;
+        &lt;%= form.fields_for :list, list do |f| %&gt;
+          &lt;%= f.text_field :object_field %&gt;
+          &lt;%= f.text_field :another_object_field %&gt;
+          ...    
+          &lt;%= link_to 'Remove', '#', :class =&gt; 'numerous-remove' %&gt;
+        &lt;% end %&gt;
+      &lt;/div&gt;
+    &lt;% end %&gt;
+</code></pre>
 
 <h2>Initialization Options</h2>
 
