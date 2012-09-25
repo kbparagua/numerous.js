@@ -106,6 +106,24 @@ You can add callbacks which will be called after adding or removing a `fields_fo
 
 The `add` and `remove` callbacks take 1 parameter which is the `fields_for` element that is added or removed. 
 
+
+## Initialization Options
+
+`add : function()`
+- A callback that will be called every time a new object is added.
+
+`remove : function()`
+- A callback that will be called every time an object is removed.
+
+`initial : number | function()`
+- An integer or a funtion that returns an integer.
+- The list will initially have this number of object.
+- defaults to 0.
+
+`after-initialize : function()`
+- A callback that will be called after initializing the list.
+
+
 ## Helper Methods
 
 `Numerous.count(String list)`
@@ -115,6 +133,9 @@ The `add` and `remove` callbacks take 1 parameter which is the `fields_for` elem
 `Numerous.get(String list)`
 - returns all the objects (HTML Elements) under the passed list
 
+
+`Numerous.removeAll(String list)`
+- triggers the remove link of all the list objects
 
 ## Credits
 
