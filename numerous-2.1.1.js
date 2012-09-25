@@ -1,6 +1,6 @@
 // Numerous.js
 // Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
-// Version 2.1.0
+// Version 2.1.1
 //
 // Author: Karl Bryan Paragua
 // Source: https://github.com/kbparagua/numerous.js 
@@ -108,14 +108,22 @@ $(document).ready(function(e)
       
       // If existing record
       if (destroyField.length == 0) {
-        var idField = form.find('input[name*="[id]"]:first'),
-          prefix = idField.attr('name').replace('[id]',''),
-          destroyFieldName = prefix + '[_destroy]';
+        var idField = form.find('input[name*="[id]"]:first');
         
-        destroyField = $('<input type="hidden" value="0" class="numerous-remove-field" name="' + 
-          destroyFieldName +'"/>');
+        // No ID field. Existing record but not yet on database
+        if (idField.length == 0) {
+          form.remove();
+        }
+        else {
+          var prefix = idField.attr('name').replace('[id]',''),
+            destroyFieldName = prefix + '[_destroy]';
           
-        form.append(destroyField);
+          destroyField = $('<input type="hidden" value="0"' + 
+            'class="numerous-remove-field" name="' + 
+            destroyFieldName +'"/>');
+            
+          form.append(destroyField);
+        }
       }
       
       destroyField.attr('value', '1');
