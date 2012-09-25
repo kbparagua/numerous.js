@@ -9,15 +9,19 @@
     
   #tags
   
+    -article.tags.each do |tag|
+      .fields-for-tags
+        =f.fields_for :tags, tag do |tag_form|
+          =tag_form.text_field :name
+          =link_to 'Remove', '#', :class => 'numerous-remove btn btn-danger'
+  
+  
   =link_to 'Add Tag', '#', :id => 'add-to-tags', :class => 'btn btn-success'
   
   #fields-for-tags.numerous
     =f.fields_for :tags, Tag.new, :child_index => 'replace_this' do |tag|
       =tag.text_field :name
-      
-      %span.numerous-remove
-        =tag.hidden_field :_destroy, :value => 0
-        =link_to 'Remove', '#', :class => 'btn btn-danger'
+      =link_to 'Remove', '#', :class => 'numerous-remove btn btn-danger'
   
   %br/
   %br/

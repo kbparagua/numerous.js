@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require numerous-2.0.2
+//= require numerous-2.1.0
 //= require bootstrap.min
 //= require_tree .
 

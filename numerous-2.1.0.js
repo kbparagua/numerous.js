@@ -1,6 +1,6 @@
 // Numerous.js
 // Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
-// Version 2.0.3
+// Version 2.1.0
 //
 // Author: Karl Bryan Paragua
 // Source: https://github.com/kbparagua/numerous.js 
@@ -75,6 +75,15 @@ $(document).ready(function(e)
 
       form = $(form);
       form.addClass(data['fields-for']);
+      
+      var sampleInputName = form.find('[name*='+ childIndex + ']:first').attr('name'),
+        namePrefixRegex = new RegExp("^(\\[|\\]|\\w|\\s|-)+\\[" + childIndex + "\\]")
+        namePrefix = sampleInputName.match(namePrefixRegex)[0],
+        removeInputName = namePrefix + '[_destroy]',
+        removeInput = $('<input type="hidden" value="0" class="numerous-remove-field" name="' + 
+          removeInputName +'"/>');
+      
+      form.append(removeInput);
       $(data['update-div']).append(form);
       
       var options = Numerous.options[data['list']];
@@ -87,16 +96,30 @@ $(document).ready(function(e)
   
   
   Numerous.createHandlersForRemove = function(list){
-    var element = '.fields-for-' + list  + ' .numerous-remove a';
+    var element = '.fields-for-' + list  + ' .numerous-remove';
     
     $('body').off('click', element);
     $('body').on('click', element, function(e){
       e.preventDefault();
       
       var _this = $(this),
-        form = _this.parent().parent();
+        form = _this.parent(),
+        destroyField = _this.siblings('.numerous-remove-field:first');
       
-      _this.siblings('input').attr('value', '1');
+      // If existing record
+      if (destroyField.length == 0) {
+        var idField = form.find('input[name*="[id]"]:first'),
+          prefix = idField.attr('name').replace('[id]',''),
+          destroyFieldName = prefix + '[_destroy]';
+        
+        destroyField = $('<input type="hidden" value="0" class="numerous-remove-field" name="' + 
+          destroyFieldName +'"/>');
+          
+        form.append(destroyField);
+      }
+      
+      destroyField.attr('value', '1');
+      
       form.removeClass('fields-for-' + list);
       form.hide();
       
@@ -125,6 +148,6 @@ $(document).ready(function(e)
   
   
   Numerous.removeAll = function(list){
-    Numerous.get(list).find('.numerous-remove a').trigger('click');
+    Numerous.get(list).find('.numerous-remove').trigger('click');
   };
 });
