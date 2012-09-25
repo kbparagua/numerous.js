@@ -149,7 +149,27 @@
 
 <p>The <code>add</code> and <code>remove</code> callbacks take 1 parameter which is the <code>fields_for</code> element that is added or removed. </p>
 
-<h2>Helper Methods</h2>
+<h2>Initialization Options</h2>
+
+<p><code>add : function()</code></p>
+
+<ul>
+<li>A callback that will be called every time a new object is added.</li>
+</ul><p><code>remove : function()</code></p>
+
+<ul>
+<li>A callback that will be called every time an object is removed.</li>
+</ul><p><code>initial : number | function()</code></p>
+
+<ul>
+<li>An integer or a funtion that returns an integer.</li>
+<li>The list will initially have this number of object.</li>
+<li>defaults to 0.</li>
+</ul><p><code>after-initialize : function()</code></p>
+
+<ul>
+<li>A callback that will be called after initializing the list.</li>
+</ul><h2>Helper Methods</h2>
 
 <p><code>Numerous.count(String list)</code></p>
 
@@ -159,6 +179,10 @@
 
 <ul>
 <li>returns all the objects (HTML Elements) under the passed list</li>
+</ul><p><code>Numerous.removeAll(String list)</code></p>
+
+<ul>
+<li>triggers the remove link of all the list objects</li>
 </ul><h2>Credits</h2>
 
 <p>Karl Bryan P. Paragua</p>
