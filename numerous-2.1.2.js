@@ -1,6 +1,6 @@
 // Numerous.js
 // Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
-// Version 2.1.1
+// Version 2.1.2
 //
 // Author: Karl Bryan Paragua
 // Source: https://github.com/kbparagua/numerous.js 
@@ -103,7 +103,7 @@ $(document).ready(function(e)
       e.preventDefault();
       
       var _this = $(this),
-        form = _this.parent(),
+        form = _this.parent().closest('.fields-for-' + list),
         destroyField = _this.siblings('.numerous-remove-field:first');
       
       // If existing record
