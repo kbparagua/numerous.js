@@ -1,6 +1,6 @@
 // Numerous.js
 // Unobtrusive Javascript helper for dynamically creating fields_for objects for Rails.
-// Version 2.1.1
+// Version 2.2.0
 //
 // Author: Karl Bryan Paragua
 // Source: https://github.com/kbparagua/numerous.js 
@@ -84,9 +84,13 @@ $(document).ready(function(e)
           removeInputName +'"/>');
       
       form.append(removeInput);
-      $(data['update-div']).append(form);
       
       var options = Numerous.options[data['list']];
+      
+      form.hide();
+      $(data['update-div']).append(form);
+      form.show((options && options['animation-options']) || {});
+      
       if (options){
         var callback = options['add'];
         if (callback){ callback(form); }
@@ -106,13 +110,25 @@ $(document).ready(function(e)
         form = _this.parent(),
         destroyField = _this.siblings('.numerous-remove-field:first');
       
+      var options = Numerous.options[list];
+      
       // If existing record
       if (destroyField.length == 0) {
         var idField = form.find('input[name*="[id]"]:first');
         
         // No ID field. Existing record but not yet on database
         if (idField.length == 0) {
-          form.remove();
+          var animation_options = ((options && options['animation-options']) || {})
+          if (animation_options['complete']) {
+            var old_complete = animation_options['complete']
+            animation_options['complete'] = function() {
+              old_complete()
+              form.remove()
+            }
+          } else {
+            animation_options['complete'] = function() {form.remove()}
+          }
+          form.hide(animation_options);
         }
         else {
           var prefix = idField.attr('name').replace('[id]',''),
@@ -129,9 +145,8 @@ $(document).ready(function(e)
       destroyField.attr('value', '1');
       
       form.removeClass('fields-for-' + list);
-      form.hide();
+      form.hide((options && options['animation-options']) || {});
       
-      var options = Numerous.options[list];
       if (options){
         var callback = options['remove'];
         if (callback) { callback(form); }
