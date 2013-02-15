@@ -119,9 +119,11 @@ If you want to be able to remove existing objects, put the `fields_for` under a 
 
 `add : function()`
 - A callback that will be called every time a new object is added.
+- This function may be called while show/hide animations are still playing.
 
 `remove : function()`
 - A callback that will be called every time an object is removed.
+- This function may be called while show/hide animations are still playing.
 
 `initial : number | function()`
 - An integer or a funtion that returns an integer.
@@ -131,6 +133,9 @@ If you want to be able to remove existing objects, put the `fields_for` under a 
 `after-initialize : function()`
 - A callback that will be called after initializing the list.
 
+`animation-options : PlainObject`
+- A hash of options passed to jQuery's [show()](http://api.jquery.com/show/) and [hide()](http://api.jquery.com/hide/) methods.
+- See [jQuery's documentation](http://api.jquery.com/) for information on the fields avaliable for this option.
 
 ## Helper Methods
 
